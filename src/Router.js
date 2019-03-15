@@ -2,18 +2,34 @@ import { createAppContainer, createStackNavigator } from 'react-navigation';
 
 import LoginPage from './pages/LoginPage';
 import SeriesPage from './pages/SeriesPage';
+import SerieDetailPage from './pages/SerieDetailPage';
+import SerieFormPage from './pages/SerieFormPage';
 
 const AppContainer = createAppContainer(createStackNavigator({
-    'Main': {
-        screen: SeriesPage
-    },
     'Login': {
         screen: LoginPage,
         navigationOptions: {
             title: 'Bem-vindo'
         }
     },
-
+    'Main': {
+        screen: SeriesPage
+    },
+    'SerieForm': {
+        screen: SerieFormPage,
+        navigationOptions: {
+            title: 'Nova série'
+        }
+    },
+    'SerieDetail': {
+        screen: SerieDetailPage,
+        navigationOptions: ({ navigation }) => {
+            const { serie } = navigation.state.params;
+            return {
+                title: serie.title
+            }
+        }
+    },
 }, {
         defaultNavigationOptions: {
             title: 'Séries',
