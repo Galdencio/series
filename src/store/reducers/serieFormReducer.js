@@ -1,8 +1,9 @@
-import { SET_FIELD, SAVE_SERIE } from '../actions';
+import { SET_FIELD, SERIE_SAVED_SUCCESS, SET_WHOLE_SERIE, RESET_FORM } from '../actions';
 
 const INITIAL_STATE = {
+    id: null,
     title: '',
-    gender: 'police',
+    gender: 'Policial',
     rate: 0,
     img: '',
     description: ''
@@ -14,8 +15,11 @@ export default function userReducer(state = INITIAL_STATE, action) {
             const newState = { ...state };
             newState[action.field] = action.value;
             return newState;
-        case SAVE_SERIE:
-            return state;
+        case SET_WHOLE_SERIE:
+            return action.serie;
+        case RESET_FORM:
+        case SERIE_SAVED_SUCCESS:
+            return INITIAL_STATE;
         default:
             return state;
     }
